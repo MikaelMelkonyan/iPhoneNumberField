@@ -155,7 +155,7 @@ public struct iPhoneNumberField: UIViewRepresentable {
                          for: .editingChanged)
         uiView.delegate = context.coordinator
         uiView.withExamplePlaceholder = placeholder == nil
-        if let defaultRegion = defaultRegion {
+        if let defaultRegion {
             uiView.partialFormatter.defaultRegion = defaultRegion
         }
         
@@ -176,7 +176,9 @@ public struct iPhoneNumberField: UIViewRepresentable {
             uiView.withFlag = showFlag
             uiView.withDefaultPickerUI = selectableFlag
             uiView.withPrefix = previewPrefix
-            uiView.partialFormatter.defaultRegion = defaultRegion ?? PhoneNumberKit.defaultRegionCode()
+            if let defaultRegion {
+                uiView.partialFormatter.defaultRegion = defaultRegion
+            }
             if placeholder != nil {
                 uiView.placeholder = placeholder
             } else {
@@ -185,13 +187,13 @@ public struct iPhoneNumberField: UIViewRepresentable {
 
             uiView.tintColor = accentColor
 
-            if let numberPlaceholderColor = numberPlaceholderColor {
+            if let numberPlaceholderColor {
                 uiView.numberPlaceholderColor = numberPlaceholderColor
             }
-            if let countryCodePlaceholderColor = countryCodePlaceholderColor {
+            if let countryCodePlaceholderColor {
                 uiView.countryCodePlaceholderColor = countryCodePlaceholderColor
             }
-            if let textAlignment = textAlignment {
+            if let textAlignment {
                 uiView.textAlignment = textAlignment
             }
 
